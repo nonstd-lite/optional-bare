@@ -493,6 +493,15 @@ CASE("storage_t: Show sizeof various optionals"
 }
 #undef optional_OUTPUT_SIZEOF
 
+CASE( "tweak header: reads tweak header if supported " "[tweak]" )
+{
+#if optional_HAVE_TWEAK_HEADER
+    EXPECT( OPTIONAL_TWEAK_VALUE == 42 );
+#else
+    EXPECT( !!"Tweak header is not available (optional_HAVE_TWEAK_HEADER: 0)." );
+#endif
+}
+
 //
 // Issues:
 //

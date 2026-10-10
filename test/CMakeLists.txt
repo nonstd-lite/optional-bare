@@ -15,6 +15,7 @@ set( unit_name "optional" )
 set( PACKAGE   ${unit_name}-bare )
 set( PROGRAM   ${unit_name}-bare )
 set( SOURCES   ${unit_name}-main.t.cpp ${unit_name}.t.cpp )
+set( TWEAKD    "." )
 
 message( STATUS "Subproject '${PROJECT_NAME}', programs '${PROGRAM}-*'")
 
@@ -125,6 +126,7 @@ function( make_target target std )
 
     add_executable            ( ${target} ${SOURCES} )
     target_include_directories( ${target} SYSTEM  PRIVATE lest )
+    target_include_directories( ${target} PRIVATE ${TWEAKD} )
     target_link_libraries     ( ${target} PRIVATE ${PACKAGE} )
     target_compile_options    ( ${target} PRIVATE ${OPTIONS} )
     target_compile_definitions( ${target} PRIVATE ${DEFINITIONS} )
