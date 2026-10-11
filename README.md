@@ -105,17 +105,24 @@ The following table gives an overview of what is **not provided** by *optional b
 
 ### Configuration
 
+#### Tweak header
+
+If the compiler supports [`__has_include()`](https://en.cppreference.com/w/cpp/preprocessor/include), *optional lite* supports the [tweak header](https://vector-of-bool.github.io/2020/10/04/lib-configuration.html) mechanism. Provide your *tweak header* as `nonstd/optional.tweak.hpp` in a folder in the include-search-path. In the tweak header, provide definitions as documented below, like `#define optional_CPLUSPLUS 201103L`.
+
 #### Standard selection macro
+
 \-D<b>optional\_CPLUSPLUS</b>=199711L  
 Define this macro to override the auto-detection of the supported C++ standard, if your compiler does not set the `__cplusplus` macro correctly.
 
 #### Select `std::optional` or `nonstd::optional`
+
 At default, *optional lite* uses `std::optional` if it is available and lets you use it via namespace `nonstd`. You can however override this default and explicitly request to use `std::optional` or optional lite's `nonstd::optional` as `nonstd::optional` via the following macros.
 
 -D<b>optional\_CONFIG\_SELECT\_OPTIONAL</b>=variant_OPTIONAL_DEFAULT  
 Define this to `optional_OPTIONAL_STD` to select `std::optional` as `nonstd::optional`. Define this to `optional_OPTIONAL_NONSTD` to select `nonstd::optional` as `nonstd::optional`. Default is undefined, which has the same effect as defining to `optional_OPTIONAL_DEFAULT`.
 
 #### Disable exceptions
+
 -D<b>optional_CONFIG_NO_EXCEPTIONS</b>=0
 Define this to 1 if you want to compile without exceptions. If not defined, the header tries and detect if exceptions have been disabled (e.g. via `-fno-exceptions`). Default is undefined.
 
